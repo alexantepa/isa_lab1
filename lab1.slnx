@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Book.consol/Book.consol.csproj" />
+  <Project Path="Book.model/Book.model.csproj" />
+  <Project Path="Book.winform/Book.winform.csproj" />
+</Solution>
