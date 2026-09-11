@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             listBooks = new DataGridView();
-            add = new Button();
-            delete = new Button();
-            update = new Button();
-            close = new Button();
-            groupe = new Button();
+            addBut = new Button();
+            deleteBut = new Button();
+            updateBut = new Button();
+            closeBut = new Button();
+            groupeBut = new Button();
+            searchAuthorBut = new Button();
             ((System.ComponentModel.ISupportInitialize)listBooks).BeginInit();
             SuspendLayout();
             // 
@@ -43,65 +44,76 @@
             listBooks.Location = new Point(12, 12);
             listBooks.Name = "listBooks";
             listBooks.RowHeadersWidth = 51;
-            listBooks.Size = new Size(1040, 374);
+            listBooks.Size = new Size(687, 374);
             listBooks.TabIndex = 0;
             // 
-            // add
+            // addBut
             // 
-            add.Location = new Point(599, 392);
-            add.Name = "add";
-            add.Size = new Size(147, 46);
-            add.TabIndex = 1;
-            add.Text = "Добавить";
-            add.UseVisualStyleBackColor = true;
-            add.Click += add_Click;
+            addBut.Location = new Point(705, 11);
+            addBut.Name = "addBut";
+            addBut.Size = new Size(173, 46);
+            addBut.TabIndex = 1;
+            addBut.Text = "Добавить";
+            addBut.UseVisualStyleBackColor = true;
             // 
-            // delete
+            // deleteBut
             // 
-            delete.Location = new Point(905, 392);
-            delete.Name = "delete";
-            delete.Size = new Size(147, 46);
-            delete.TabIndex = 2;
-            delete.Text = "Удалить";
-            delete.UseVisualStyleBackColor = true;
+            deleteBut.Location = new Point(705, 63);
+            deleteBut.Name = "deleteBut";
+            deleteBut.Size = new Size(173, 46);
+            deleteBut.TabIndex = 2;
+            deleteBut.Text = "Удалить";
+            deleteBut.UseVisualStyleBackColor = true;
             // 
-            // update
+            // updateBut
             // 
-            update.Location = new Point(752, 392);
-            update.Name = "update";
-            update.Size = new Size(147, 46);
-            update.TabIndex = 3;
-            update.Text = "Изменить";
-            update.UseVisualStyleBackColor = true;
+            updateBut.Location = new Point(879, 11);
+            updateBut.Name = "updateBut";
+            updateBut.Size = new Size(173, 46);
+            updateBut.TabIndex = 3;
+            updateBut.Text = "Изменить";
+            updateBut.UseVisualStyleBackColor = true;
             // 
-            // close
+            // closeBut
             // 
-            close.Location = new Point(12, 392);
-            close.Name = "close";
-            close.Size = new Size(147, 46);
-            close.TabIndex = 4;
-            close.Text = "Закрыть";
-            close.UseVisualStyleBackColor = true;
+            closeBut.Location = new Point(705, 339);
+            closeBut.Name = "closeBut";
+            closeBut.Size = new Size(147, 46);
+            closeBut.TabIndex = 4;
+            closeBut.Text = "Закрыть";
+            closeBut.UseVisualStyleBackColor = true;
+            closeBut.Click += closeBut_Click;
             // 
-            // groupe
+            // groupeBut
             // 
-            groupe.Location = new Point(446, 392);
-            groupe.Name = "groupe";
-            groupe.Size = new Size(147, 46);
-            groupe.TabIndex = 5;
-            groupe.Text = "Группировка";
-            groupe.UseVisualStyleBackColor = true;
+            groupeBut.Location = new Point(705, 185);
+            groupeBut.Name = "groupeBut";
+            groupeBut.Size = new Size(184, 46);
+            groupeBut.TabIndex = 5;
+            groupeBut.Text = "Группировка по жанру";
+            groupeBut.UseVisualStyleBackColor = true;
+            groupeBut.Click += groupeBut_Click;
+            // 
+            // searchAuthorBut
+            // 
+            searchAuthorBut.Location = new Point(894, 185);
+            searchAuthorBut.Name = "searchAuthorBut";
+            searchAuthorBut.Size = new Size(158, 46);
+            searchAuthorBut.TabIndex = 6;
+            searchAuthorBut.Text = "Пориск автора";
+            searchAuthorBut.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1064, 450);
-            Controls.Add(groupe);
-            Controls.Add(close);
-            Controls.Add(update);
-            Controls.Add(delete);
-            Controls.Add(add);
+            ClientSize = new Size(1060, 397);
+            Controls.Add(searchAuthorBut);
+            Controls.Add(groupeBut);
+            Controls.Add(closeBut);
+            Controls.Add(updateBut);
+            Controls.Add(deleteBut);
+            Controls.Add(addBut);
             Controls.Add(listBooks);
             Name = "Form1";
             Text = "Form1";
@@ -112,10 +124,11 @@
         #endregion
 
         private DataGridView listBooks;
-        private Button add;
-        private Button delete;
-        private Button update;
-        private Button close;
-        private Button groupe;
+        private Button addBut;
+        private Button deleteBut;
+        private Button updateBut;
+        private Button closeBut;
+        private Button groupeBut;
+        private Button searchAuthorBut;
     }
 }
