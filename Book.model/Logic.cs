@@ -4,9 +4,14 @@ using System.Text;
 
 namespace Book.model
 {
+    /// <summary>
+    /// Provides logic for managing books.
+    /// </summary>
     internal class Logic
     {
-        public void CreatBook(int id, string title, string author, string genre, int price)
+        int k;
+        public List<Book> books = new List<Book>();
+        public Book CreatBook(int id, string title, string author, string genre, int price)
         {
             Book book = new Book
             {
@@ -16,12 +21,14 @@ namespace Book.model
                 genre = genre,
                 price = price
             };
-            // You can add additional logic here, such as saving the book to a database or a collection.
+            books.Add(book);
+            return book;//ЗАЧЕМИ. НАДО УБРАТЬ И ИЗМЕНИТЬ НА ВОЙД
         }
 
-        public void DeleteBook(Book book)
+        public void DeleteBook(int id)
         {
-            // Implementation for deleting a book
+            Book b = books.Find(x => x.id == id);
+            if (b != null) books.Remove(b);
         }
 
         public void UpdateBook(Book book, string newTitle, string newAuthor, string newGenre, int newPrice)
