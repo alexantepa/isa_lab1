@@ -5,86 +5,64 @@ using System.Text;
 namespace Book.model
 {
     /// <summary>
-    /// Provides logic for managing books.
+    /// Класс бизнес-логики.
     /// </summary>
+
     internal class Logic
     {
         int k;
-        public List<Book> books = new List<Book>();
-        public Book CreatBook(int id, string title, string author, string genre, int price)
+        private List<Book> books = new List<Book>();
+        private int nextId = 1;
+        public void CreatBook(string title, string author, string genre, int price)
         {
             Book book = new Book
             {
-                id = id,
+                id = nextId++,
                 title = title,
                 author = author,
                 genre = genre,
                 price = price
             };
             books.Add(book);
-            return book;//ЗАЧЕМИ. НАДО УБРАТЬ И ИЗМЕНИТЬ НА ВОЙД
         }
 
         public void DeleteBook(int id)
         {
-            Book b = books.Find(x => x.id == id);
+            Book? b = books.Find(x => x.id == id);
             if (b != null) books.Remove(b);
         }
 
-        public void UpdateBook(Book book, string newTitle, string newAuthor, string newGenre, int newPrice)
+        public void UpdateBook(int id, string newTitle, string newAuthor, string newGenre, int newPrice)
         {
-            book.title = newTitle;
-            book.author = newAuthor;
-            book.genre = newGenre;
-            book.price = newPrice;
-            // You can add additional logic here, such as saving the updated book to a database or a collection.
+            Book? b = books.Find(x => x.id == id);
+            if (b != null)
+            {
+                b.title = newTitle;
+                b.author = newAuthor;
+                b.genre = newGenre;
+                b.price = newPrice;
+            }
         }
 
-        public void ReadBook(Book book)
+        public List<Book> ReadBook()
         {
-            Console.WriteLine($"ID: {book.id}, Title: {book.title}, Author: {book.author}, Genre: {book.genre}, Price: {book.price}");
+            return books;
         }
 
-        public void GroupByGenre(List<Book> books)
+        /// <summary>
+        /// Группировка книг по жанру
+        /// </summary>
+        public Dictionary<string, List<Book>> GroupByGenre()
         {
-            //var groupedBooks = new Dictionary<string, List<Book>>();
-            //foreach (var book in books)
-            //{
-            //    if (!groupedBooks.ContainsKey(book.genre))
-            //    {
-            //        groupedBooks[book.genre] = new List<Book>();
-            //    }
-            //    groupedBooks[book.genre].Add(book);
-            //}
-            //foreach (var genre in groupedBooks.Keys)
-            //{
-            //    Console.WriteLine($"Genre: {genre}");
-            //    foreach (var book in groupedBooks[genre])
-            //    {
-            //        Console.WriteLine($"  ID: {book.id}, Title: {book.title}, Author: {book.author}, Price: {book.price}");
-            //    }
-            //}
+            return books.groupBy(b => b.genre).toDictionary(g => g.Key, g => g.ToList());
         }
 
-        public void GroupeByAuthor(List<Book> books)
+        /// <summary>
+        /// Поиск книг по автору
+        /// </summary>
+        public List<Book> FindByAuthor(string authorr)
         {
-            //var groupedBooks = new Dictionary<string, List<Book>>();
-            //foreach (var book in books)
-            //{
-            //    if (!groupedBooks.ContainsKey(book.author))
-            //    {
-            //        groupedBooks[book.author] = new List<Book>();
-            //    }
-            //    groupedBooks[book.author].Add(book);
-            //}
-            //foreach (var author in groupedBooks.Keys)
-            //{
-            //    Console.WriteLine($"Author: {author}");
-            //    foreach (var book in groupedBooks[author])
-            //    {
-            //        Console.WriteLine($"  ID: {book.id}, Title: {book.title}, Genre: {book.genre}, Price: {book.price}");
-            //    }
-            //}
+            return books.Where(b => b.author.Contains(authorr, StringComparison.OrdinalIgnoreCase)).ToList();
         }
     }
 }
