@@ -8,7 +8,7 @@ namespace Book.model
     /// Класс бизнес-логики.
     /// </summary>
 
-    internal class Logic
+    public class Logic
     {
         int k;
         private List<Book> books = new List<Book>();
@@ -44,7 +44,7 @@ namespace Book.model
             }
         }
 
-        public List<Book> ReadBook()
+        public List<Book> GetBooks()
         {
             return books;
         }
@@ -54,7 +54,7 @@ namespace Book.model
         /// </summary>
         public Dictionary<string, List<Book>> GroupByGenre()
         {
-            return books.groupBy(b => b.genre).toDictionary(g => g.Key, g => g.ToList());
+            return books.GroupBy(b => b.genre).ToDictionary(g => g.Key, g => g.ToList());
         }
 
         /// <summary>

@@ -1,5 +1,5 @@
 <Solution>
-  <Project Path="Book.consol/Book.consol.csproj" />
+  <Project Path="Book.console/Book.console.csproj" Id="766510be-1954-41e9-9a92-020c110ee669" />
   <Project Path="Book.model/Book.model.csproj" />
   <Project Path="Book.winform/Book.winform.csproj" />
 </Solution>

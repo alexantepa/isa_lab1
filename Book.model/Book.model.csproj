@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Book.winform\Book.winform.csproj" />
-  </ItemGroup>
-
 </Project>
