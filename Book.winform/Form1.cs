@@ -38,17 +38,30 @@ namespace Book.winform
         private void groupeBut_Click(object sender, EventArgs e)
         {
             var groupedBooks = logic.GroupByGenre();
-            List<object> listBooksss = new List<object>();
-            foreach (var group in groupedBooks)
-            {
-                foreach (var book in group.Value)
-                {
-                    listBooksss.Add(book);
-                }
-            }
-            MessageBox.Show(groupedBooks.Values.ToString());
+
+            var newList = groupedBooks
+                .SelectMany(groupe => groupe.Value)
+                .ToList();
+            //List<Book> listBooksss = new List<Book>();
+            //foreach (var group in groupedBooks)
+            //{
+            //    listBooksss.Add(new
+            //    {
+            //        id = "",
+            //        title = $"=== {group.Key} ===",
+            //        author = "",
+            //        genre = "",
+            //        price = ""
+            //    });
+            //    foreach (var book in group.Value)
+            //    {
+            //        listBooksss.Add(book);
+            //    }
+            //}
+            ////MessageBox.Show(groupedBooks.Values.ToString());
             listBooks.DataSource = null;
-            listBooks.DataSource = listBooksss;
+            listBooks.DataSource = newList;
+
         }
 
         private void listBooks_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
