@@ -46,6 +46,7 @@
             listBooks.RowHeadersWidth = 51;
             listBooks.Size = new Size(687, 374);
             listBooks.TabIndex = 0;
+            listBooks.CellMouseClick += listBooks_CellMouseClick;
             // 
             // addBut
             // 
@@ -55,6 +56,7 @@
             addBut.TabIndex = 1;
             addBut.Text = "Добавить";
             addBut.UseVisualStyleBackColor = true;
+            addBut.Click += addBut_Click;
             // 
             // deleteBut
             // 
@@ -64,6 +66,7 @@
             deleteBut.TabIndex = 2;
             deleteBut.Text = "Удалить";
             deleteBut.UseVisualStyleBackColor = true;
+            deleteBut.Click += deleteBut_Click;
             // 
             // updateBut
             // 
@@ -73,6 +76,7 @@
             updateBut.TabIndex = 3;
             updateBut.Text = "Изменить";
             updateBut.UseVisualStyleBackColor = true;
+            updateBut.Click += updateBut_Click;
             // 
             // closeBut
             // 

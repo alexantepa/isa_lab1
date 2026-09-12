@@ -26,10 +26,16 @@ namespace Book.winform
 
         private void ReloadGrid()
         {
+            //listBooks.Columns.Add("ID", "ID");
+            //listBooks.Columns.Add("Название", "Название");
+            //listBooks.Columns.Add("Автор", "Автор");
+            //listBooks.Columns.Add("Жанр", "Жанр");
+            //listBooks.Columns.Add("Цена", "Цена");
             listBooks.DataSource = null;
             listBooks.DataSource = logic.GetBooks();
         }
 
+        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         private void listBooks_SelectionChanged(object? sender, EventArgs e)
         {
             if (listBooks.CurrentRow?.DataBoundItem is not Book.model.Book book) return;
@@ -45,7 +51,33 @@ namespace Book.winform
 
         private void groupeBut_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(selected.ToString());
+
+        }
+
+        private void listBooks_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            selected = e.RowIndex;
+        }
+
+        private void addBut_Click(object sender, EventArgs e)
+        {
+            addForm addForm = new addForm(logic);
+            addForm.ShowDialog();
+            ReloadGrid();
+        }
+
+        private void updateBut_Click(object sender, EventArgs e)
+        {
+            var book = logic.GetBooks().Find(x => x.id == selected + 1);
+            addForm addForm = new addForm(logic, selected + 1);
+            addForm.ShowDialog();
+            ReloadGrid();
+        }
+
+        private void deleteBut_Click(object sender, EventArgs e)
+        {
+            logic.DeleteBook(selected + 1);
+            ReloadGrid();
         }
     }
 }

@@ -10,8 +10,7 @@ namespace Book.model
 
     public class Logic
     {
-        int k;
-        private List<Book> books = new List<Book>();
+        public List<Book> books = new List<Book>();
         private int nextId = 1;
         public void CreatBook(string title, string author, string genre, int price)
         {
