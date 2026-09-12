@@ -26,22 +26,8 @@ namespace Book.winform
 
         private void ReloadGrid()
         {
-            //listBooks.Columns.Add("ID", "ID");
-            //listBooks.Columns.Add("Название", "Название");
-            //listBooks.Columns.Add("Автор", "Автор");
-            //listBooks.Columns.Add("Жанр", "Жанр");
-            //listBooks.Columns.Add("Цена", "Цена");
             listBooks.DataSource = null;
             listBooks.DataSource = logic.GetBooks();
-        }
-
-        //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-        private void listBooks_SelectionChanged(object? sender, EventArgs e)
-        {
-            if (listBooks.CurrentRow?.DataBoundItem is not Book.model.Book book) return;
-
-            selected = book.id;
-            MessageBox.Show(selected.ToString());
         }
 
         private void closeBut_Click(object sender, EventArgs e)
@@ -51,7 +37,18 @@ namespace Book.winform
 
         private void groupeBut_Click(object sender, EventArgs e)
         {
-
+            var groupedBooks = logic.GroupByGenre();
+            List<object> listBooksss = new List<object>();
+            foreach (var group in groupedBooks)
+            {
+                foreach (var book in group.Value)
+                {
+                    listBooksss.Add(book);
+                }
+            }
+            MessageBox.Show(groupedBooks.Values.ToString());
+            listBooks.DataSource = null;
+            listBooks.DataSource = listBooksss;
         }
 
         private void listBooks_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -78,6 +75,20 @@ namespace Book.winform
         {
             logic.DeleteBook(selected + 1);
             ReloadGrid();
+        }
+
+        private void searchAuthorBut_Click(object sender, EventArgs e)
+        {
+            string result = Microsoft.VisualBasic.Interaction.InputBox("Введите автора или ничего для всех:");
+            if (result == null || result.Length == 0) {
+                ReloadGrid();
+            }
+            else
+            {
+                var authorBooks = logic.GetBooks().Where(x => x.author.ToLower().Contains(result.ToLower()));
+                listBooks.DataSource = null;
+                listBooks.DataSource = authorBooks.ToList();
+            }
         }
     }
 }

@@ -106,6 +106,7 @@
             searchAuthorBut.TabIndex = 6;
             searchAuthorBut.Text = "Пориск автора";
             searchAuthorBut.UseVisualStyleBackColor = true;
+            searchAuthorBut.Click += searchAuthorBut_Click;
             // 
             // Form1
             // 
