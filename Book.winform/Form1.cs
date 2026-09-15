@@ -42,7 +42,7 @@ namespace Book.winform
             var newList = groupedBooks
                 .SelectMany(groupe => groupe.Value)
                 .ToList();
-            
+
             listBooks.DataSource = null;
             listBooks.DataSource = newList;
 
@@ -77,12 +77,13 @@ namespace Book.winform
         private void searchAuthorBut_Click(object sender, EventArgs e)
         {
             string result = Microsoft.VisualBasic.Interaction.InputBox("Введите автора или ничего для всех:");
-            if (result == null || result.Length == 0) {
+            if (result == null || result.Length == 0)
+            {
                 ReloadGrid();
             }
             else
             {
-                var authorBooks = logic.GetBooks().Where(x => x.author.ToLower().Contains(result.ToLower()));
+                var authorBooks = logic.FindByAuthor(result);
                 listBooks.DataSource = null;
                 listBooks.DataSource = authorBooks.ToList();
             }

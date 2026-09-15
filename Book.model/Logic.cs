@@ -12,6 +12,10 @@ namespace Book.model
     {
         public List<Book> books = new List<Book>();
         private int nextId = 1;
+
+        /// <summary>
+        /// Создание новой книги и добавление её в список
+        /// </summary>
         public void CreatBook(string title, string author, string genre, int price)
         {
             Book book = new Book
@@ -25,12 +29,18 @@ namespace Book.model
             books.Add(book);
         }
 
+        /// <summary>
+        /// Удаление книги по ID
+        /// </summary>
         public void DeleteBook(int id)
         {
             Book? b = books.Find(x => x.id == id);
             if (b != null) books.Remove(b);
         }
 
+        /// <summary>
+        /// Изменение книги по ID
+        /// </summary>
         public void UpdateBook(int id, string newTitle, string newAuthor, string newGenre, int newPrice)
         {
             Book? b = books.Find(x => x.id == id);
@@ -43,6 +53,9 @@ namespace Book.model
             }
         }
 
+        /// <summary>
+        /// Чтение всех книг
+        /// </summary>
         public List<Book> GetBooks()
         {
             return books;

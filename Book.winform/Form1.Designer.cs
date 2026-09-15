@@ -104,7 +104,7 @@
             searchAuthorBut.Name = "searchAuthorBut";
             searchAuthorBut.Size = new Size(158, 46);
             searchAuthorBut.TabIndex = 6;
-            searchAuthorBut.Text = "Пориск автора";
+            searchAuthorBut.Text = "Поиск автора";
             searchAuthorBut.UseVisualStyleBackColor = true;
             searchAuthorBut.Click += searchAuthorBut_Click;
             // 
