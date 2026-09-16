@@ -15,6 +15,10 @@ namespace Book.model
 
         /// <summary>
         /// Создание новой книги и добавление её в список
+        /// <param name="title">Название клиента</param>
+        /// <param name="author">Имя автора</param>
+        /// <param name="genre">Жанр книги</param>
+        /// <param name="price">Цена книги</param>
         /// </summary>
         public void CreatBook(string title, string author, string genre, int price)
         {
@@ -31,6 +35,7 @@ namespace Book.model
 
         /// <summary>
         /// Удаление книги по ID
+        /// <param name="id">ID книги</param>
         /// </summary>
         public void DeleteBook(int id)
         {
@@ -40,6 +45,11 @@ namespace Book.model
 
         /// <summary>
         /// Изменение книги по ID
+        /// <param name="id">ID книги для изменения</param>
+        /// <param name="newTitle">Новое название</param>
+        /// <param name="newAuthor">Имя нового автора</param>
+        /// <param name="newGenre">Новый жанр</param>
+        /// <param name="newPrice">Новая цена</param>
         /// </summary>
         public void UpdateBook(int id, string newTitle, string newAuthor, string newGenre, int newPrice)
         {
@@ -71,10 +81,11 @@ namespace Book.model
 
         /// <summary>
         /// Поиск книг по автору
+        /// <param name="author">Имя автора на поиска</param>
         /// </summary>
-        public List<Book> FindByAuthor(string authorr)
+        public List<Book> FindByAuthor(string author)
         {
-            return books.Where(b => b.author.Contains(authorr, StringComparison.OrdinalIgnoreCase)).ToList();
+            return books.Where(b => b.author.Contains(author, StringComparison.OrdinalIgnoreCase)).ToList();
         }
     }
 }
