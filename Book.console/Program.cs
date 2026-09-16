@@ -22,9 +22,16 @@ while (choice != 0)
             Console.Write("Введите жанр книги: ");
             string genre = Console.ReadLine();
             Console.Write("Введите цену книги: ");
-            int price = Convert.ToInt32(Console.ReadLine());
-            logic.CreatBook(title, author, genre, price);
-            Console.WriteLine("Книга добавлена!");
+            string price = Console.ReadLine();
+            if (int.TryParse(price, out int num))
+            {
+                logic.CreatBook(title, author, genre, Convert.ToInt32(price));
+                Console.WriteLine("Книга добавлена!");
+            }
+            else
+            {
+                Console.WriteLine("\nВведено неверное значение");
+            }
             break;
         case 2:
             foreach (var b in logic.GetBooks())
@@ -42,15 +49,23 @@ while (choice != 0)
             Console.Write("Введите новый жанр книги: ");
             string newGenre = Console.ReadLine();
             Console.Write("Введите новую цену книги: ");
-            int newPrice = Convert.ToInt32(Console.ReadLine());
-            logic.UpdateBook(id, newTitle, newAuthor, newGenre, newPrice);
+            string newPrice = Console.ReadLine();
+            if (int.TryParse(newPrice, out int n))
+                logic.UpdateBook(id, newTitle, newAuthor, newGenre, Convert.ToInt32(newPrice));
             Console.WriteLine("Книга изменена!");
             break;
         case 4:
             Console.Write("Введите ID книги для удаления: ");
-            int delid = Convert.ToInt32(Console.ReadLine());
-            logic.DeleteBook(delid);
-            Console.WriteLine("Книга удалена!");
+            string delid = Console.ReadLine();
+            if (int.TryParse(delid, out int nu))
+            {
+                logic.DeleteBook(Convert.ToInt32(delid));
+                Console.WriteLine("Книга удалена!");
+            }
+            else
+            {
+                Console.WriteLine("Введено некоректное значение");
+            }
             break;
         case 5:
             var groupedBooks = logic.GroupByGenre();
