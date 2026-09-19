@@ -2,15 +2,15 @@
 {
     public class Book
     {
-        public int id { get; set; }
-        public string title { get; set; }
-        public string author { get; set; }
-        public string genre { get; set; }
-        public int price { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public string Genre { get; set; }
+        public int Price { get; set; }
 
         public override string ToString()
         {
-            return $"[{id}] {title} — {author}, \n\tжанр: {genre}, \n\tцена: {price:0.00}";
+            return $"[{Id}] {Title} — {Author}, \n\tжанр: {Genre}, \n\tцена: {Price:0.00}";
         }
     }
 }

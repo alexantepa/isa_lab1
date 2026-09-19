@@ -35,6 +35,8 @@
             closeBut = new Button();
             groupeBut = new Button();
             searchAuthorBut = new Button();
+            basketBut = new Button();
+            addToBusketBut = new Button();
             ((System.ComponentModel.ISupportInitialize)listBooks).BeginInit();
             SuspendLayout();
             // 
@@ -46,6 +48,7 @@
             listBooks.RowHeadersWidth = 51;
             listBooks.Size = new Size(687, 374);
             listBooks.TabIndex = 0;
+            listBooks.CellDoubleClick += listBooks_CellDoubleClick;
             listBooks.CellMouseClick += listBooks_CellMouseClick;
             // 
             // addBut
@@ -108,11 +111,33 @@
             searchAuthorBut.UseVisualStyleBackColor = true;
             searchAuthorBut.Click += searchAuthorBut_Click;
             // 
+            // basketBut
+            // 
+            basketBut.Location = new Point(894, 237);
+            basketBut.Name = "basketBut";
+            basketBut.Size = new Size(158, 45);
+            basketBut.TabIndex = 7;
+            basketBut.Text = "Корзина";
+            basketBut.UseVisualStyleBackColor = true;
+            basketBut.Click += busketBut_Click;
+            // 
+            // addToBusketBut
+            // 
+            addToBusketBut.Location = new Point(705, 237);
+            addToBusketBut.Name = "addToBusketBut";
+            addToBusketBut.Size = new Size(184, 45);
+            addToBusketBut.TabIndex = 8;
+            addToBusketBut.Text = "Добавить в корзину";
+            addToBusketBut.UseVisualStyleBackColor = true;
+            addToBusketBut.Click += addToBusketBut_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1060, 397);
+            Controls.Add(addToBusketBut);
+            Controls.Add(basketBut);
             Controls.Add(searchAuthorBut);
             Controls.Add(groupeBut);
             Controls.Add(closeBut);
@@ -120,6 +145,8 @@
             Controls.Add(deleteBut);
             Controls.Add(addBut);
             Controls.Add(listBooks);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)listBooks).EndInit();
@@ -135,5 +162,7 @@
         private Button closeBut;
         private Button groupeBut;
         private Button searchAuthorBut;
+        private Button basketBut;
+        private Button addToBusketBut;
     }
 }

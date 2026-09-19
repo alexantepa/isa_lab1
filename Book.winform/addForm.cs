@@ -13,19 +13,23 @@ namespace Book.winform
     {
         public Logic logic;
         int id;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="logic"></param>
+        /// <param name="id"></param>
         public addForm(Logic logic, int id)
         {
             InitializeComponent();
             this.logic = logic;
             this.id = id;
-            var book = logic.GetBooks().Find(b => b.id == id);
+            var book = logic.GetBooks().Find(b => b.Id == id);
             if (book != null)
             {
-                this.title.Text = book.title;
-                this.author.Text = book.author;
-                this.genre.Text = book.genre;
-                this.price.Text = book.price.ToString();
+                this.title.Text = book.Title;
+                this.author.Text = book.Author;
+                this.genre.Text = book.Genre;
+                this.price.Text = book.Price.ToString();
             }
 
             save.Click += saveUpdate_Click;

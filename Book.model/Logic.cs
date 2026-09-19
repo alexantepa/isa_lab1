@@ -24,11 +24,11 @@ namespace Book.model
         {
             Book book = new Book
             {
-                id = nextId++,
-                title = title,
-                author = author,
-                genre = genre,
-                price = price
+                Id = nextId++,
+                Title = title,
+                Author = author,
+                Genre = genre,
+                Price = price
             };
             books.Add(book);
         }
@@ -39,7 +39,7 @@ namespace Book.model
         /// </summary>
         public void DeleteBook(int id)
         {
-            Book? b = books.Find(x => x.id == id);
+            Book? b = books.Find(x => x.Id == id);
             if (b != null) books.Remove(b);
         }
 
@@ -53,13 +53,13 @@ namespace Book.model
         /// </summary>
         public void UpdateBook(int id, string newTitle, string newAuthor, string newGenre, int newPrice)
         {
-            Book? b = books.Find(x => x.id == id);
+            Book? b = books.Find(x => x.Id == id);
             if (b != null)
             {
-                b.title = newTitle;
-                b.author = newAuthor;
-                b.genre = newGenre;
-                b.price = newPrice;
+                b.Title = newTitle;
+                b.Author = newAuthor;
+                b.Genre = newGenre;
+                b.Price = newPrice;
             }
         }
 
@@ -76,7 +76,7 @@ namespace Book.model
         /// </summary>
         public Dictionary<string, List<Book>> GroupByGenre()
         {
-            return books.GroupBy(b => b.genre).ToDictionary(g => g.Key, g => g.ToList());
+            return books.GroupBy(b => b.Genre).ToDictionary(g => g.Key, g => g.ToList());
         }
 
         /// <summary>
@@ -85,7 +85,8 @@ namespace Book.model
         /// </summary>
         public List<Book> FindByAuthor(string author)
         {
-            return books.Where(b => b.author.Contains(author, StringComparison.OrdinalIgnoreCase)).ToList();
+            return books.Where(b => b.Author.Contains(author, StringComparison.OrdinalIgnoreCase)).ToList();
         }
+
     }
 }

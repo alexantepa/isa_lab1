@@ -5,6 +5,7 @@ namespace Book.winform
     public partial class Form1 : Form
     {
         public Logic logic = new Logic();
+        private Logic busket = new Logic(); 
         public int selected;
 
         public Form1()
@@ -45,7 +46,6 @@ namespace Book.winform
 
             listBooks.DataSource = null;
             listBooks.DataSource = newList;
-
         }
 
         private void listBooks_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -62,15 +62,14 @@ namespace Book.winform
 
         private void updateBut_Click(object sender, EventArgs e)
         {
-            var book = logic.GetBooks().Find(x => x.id == selected + 1);
-            addForm addForm = new addForm(logic, selected + 1);
+            addForm addForm = new addForm(logic, logic.GetBooks()[selected].Id);
             addForm.ShowDialog();
             ReloadGrid();
         }
 
         private void deleteBut_Click(object sender, EventArgs e)
         {
-            logic.DeleteBook(selected + 1);
+            logic.DeleteBook(logic.GetBooks()[selected].Id);
             ReloadGrid();
         }
 
@@ -86,6 +85,26 @@ namespace Book.winform
                 var authorBooks = logic.FindByAuthor(result);
                 listBooks.DataSource = null;
                 listBooks.DataSource = authorBooks.ToList();
+            }
+        }
+
+        private void busketBut_Click(object sender, EventArgs e)
+        {
+            busket busketForm = new busket(busket);
+            busketForm.ShowDialog();
+        }
+
+        private void addToBusketBut_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBooks_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            selected = e.RowIndex;
+            if (busket.books.Contains(logic.GetBooks()[selected]))
+            {
+                busket.books.Add(logic.GetBooks()[selected]);
             }
         }
     }
