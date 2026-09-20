@@ -5,7 +5,6 @@ namespace Book.winform
     public partial class Form1 : Form
     {
         public Logic logic = new Logic();
-        private List<string> busket = new List<string>();
         private int sum = 0;
         public int selected;
 
@@ -14,7 +13,6 @@ namespace Book.winform
             InitializeComponent();
             FillData();
             ReloadGrid();
-
         }
 
         private void FillData()
@@ -40,13 +38,6 @@ namespace Book.winform
         private void groupeBut_Click(object sender, EventArgs e)
         {
             var groupedBooks = logic.GroupByGenre();
-
-            //var newList = groupedBooks
-            //    .SelectMany(groupe => groupe.Value)
-            //    .ToList();
-
-            //listBooks.DataSource = null;
-            //listBooks.DataSource = newList;
 
             var lines = groupedBooks.Select(g => $"{g.Key} ({g.Value.Count} шт.):\r\n" +
                 string.Join("\r\n", g.Value.Select(c => "   " + c.ToString())));
@@ -97,22 +88,25 @@ namespace Book.winform
 
         private void busketBut_Click(object sender, EventArgs e)
         {
-            ResaultForm busketForm = new ResaultForm(sum, busket);
+            ResaultForm busketForm = new ResaultForm(logic);
             busketForm.ShowDialog();
         }
 
         private void clearBusketBut_Click(object sender, EventArgs e)
         {
-            sum = 0;
-            busket.Clear();
+            logic.ClearBusket();
         }
 
         private void listBooks_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             selected = e.RowIndex;
-            sum += logic.GetBooks()[selected].Price;
-            busket.Add($"{logic.GetBooks()[selected].Title} - {logic.GetBooks()[selected].Author}." + 
-                $" Цена: {logic.GetBooks()[selected].Price}");
+            logic.AddToBusket(logic.GetBooks()[selected].Id);
+        }
+
+        private void sortByPrise_Click(object sender, EventArgs e)
+        {
+            logic.SortByPrice();
+            ReloadGrid();
         }
     }
 }

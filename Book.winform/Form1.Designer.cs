@@ -37,6 +37,7 @@
             searchAuthorBut = new Button();
             basketBut = new Button();
             clearBusketBut = new Button();
+            sortByPrise = new Button();
             ((System.ComponentModel.ISupportInitialize)listBooks).BeginInit();
             SuspendLayout();
             // 
@@ -131,11 +132,22 @@
             clearBusketBut.UseVisualStyleBackColor = true;
             clearBusketBut.Click += clearBusketBut_Click;
             // 
+            // sortByPrise
+            // 
+            sortByPrise.Location = new Point(704, 288);
+            sortByPrise.Name = "sortByPrise";
+            sortByPrise.Size = new Size(184, 45);
+            sortByPrise.TabIndex = 9;
+            sortByPrise.Text = "Сортировка по цене";
+            sortByPrise.UseVisualStyleBackColor = true;
+            sortByPrise.Click += sortByPrise_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1060, 397);
+            Controls.Add(sortByPrise);
             Controls.Add(clearBusketBut);
             Controls.Add(basketBut);
             Controls.Add(searchAuthorBut);
@@ -164,5 +176,6 @@
         private Button searchAuthorBut;
         private Button basketBut;
         private Button clearBusketBut;
+        private Button sortByPrise;
     }
 }

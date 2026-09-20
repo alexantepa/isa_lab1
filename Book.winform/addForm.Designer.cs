@@ -148,6 +148,8 @@
             Controls.Add(genre);
             Controls.Add(price);
             Controls.Add(title);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
             Name = "addForm";
             Text = "addForm";
             ResumeLayout(false);

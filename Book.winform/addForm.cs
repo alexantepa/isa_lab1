@@ -14,10 +14,10 @@ namespace Book.winform
         public Logic logic;
         int id;
         /// <summary>
-        /// 
+        /// Создание формы для редактирования книги
         /// </summary>
-        /// <param name="logic"></param>
-        /// <param name="id"></param>
+        /// <param name="logic">Экземпляр логики</param>
+        /// <param name="id">ID книги для редактирования</param>
         public addForm(Logic logic, int id)
         {
             InitializeComponent();
@@ -35,6 +35,10 @@ namespace Book.winform
             save.Click += saveUpdate_Click;
         }
 
+        /// <summary>
+        /// Создание формы для добавления новой книги
+        /// </summary>
+        /// <param name="logic">Экземпляр логики</param>
         public addForm(Logic logic)
         {
             this.logic = logic;

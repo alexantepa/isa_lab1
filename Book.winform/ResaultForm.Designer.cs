@@ -54,7 +54,7 @@
             busketItems.TabIndex = 1;
             busketItems.Text = "";
             // 
-            // busket
+            // ResaultForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -63,8 +63,8 @@
             Controls.Add(close);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
-            Name = "busket";
-            Text = "busket";
+            Name = "ResaultForm";
+            Text = "Результат";
             ResumeLayout(false);
         }
 
