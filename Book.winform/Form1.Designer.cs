@@ -36,7 +36,7 @@
             groupeBut = new Button();
             searchAuthorBut = new Button();
             basketBut = new Button();
-            addToBusketBut = new Button();
+            clearBusketBut = new Button();
             ((System.ComponentModel.ISupportInitialize)listBooks).BeginInit();
             SuspendLayout();
             // 
@@ -121,22 +121,22 @@
             basketBut.UseVisualStyleBackColor = true;
             basketBut.Click += busketBut_Click;
             // 
-            // addToBusketBut
+            // clearBusketBut
             // 
-            addToBusketBut.Location = new Point(705, 237);
-            addToBusketBut.Name = "addToBusketBut";
-            addToBusketBut.Size = new Size(184, 45);
-            addToBusketBut.TabIndex = 8;
-            addToBusketBut.Text = "Добавить в корзину";
-            addToBusketBut.UseVisualStyleBackColor = true;
-            addToBusketBut.Click += addToBusketBut_Click;
+            clearBusketBut.Location = new Point(705, 237);
+            clearBusketBut.Name = "clearBusketBut";
+            clearBusketBut.Size = new Size(184, 45);
+            clearBusketBut.TabIndex = 8;
+            clearBusketBut.Text = "Очистить корзину";
+            clearBusketBut.UseVisualStyleBackColor = true;
+            clearBusketBut.Click += clearBusketBut_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1060, 397);
-            Controls.Add(addToBusketBut);
+            Controls.Add(clearBusketBut);
             Controls.Add(basketBut);
             Controls.Add(searchAuthorBut);
             Controls.Add(groupeBut);
@@ -163,6 +163,6 @@
         private Button groupeBut;
         private Button searchAuthorBut;
         private Button basketBut;
-        private Button addToBusketBut;
+        private Button clearBusketBut;
     }
 }

@@ -5,7 +5,8 @@ namespace Book.winform
     public partial class Form1 : Form
     {
         public Logic logic = new Logic();
-        private Logic busket = new Logic(); 
+        private List<string> busket = new List<string>();
+        private int sum = 0;
         public int selected;
 
         public Form1()
@@ -40,12 +41,18 @@ namespace Book.winform
         {
             var groupedBooks = logic.GroupByGenre();
 
-            var newList = groupedBooks
-                .SelectMany(groupe => groupe.Value)
-                .ToList();
+            //var newList = groupedBooks
+            //    .SelectMany(groupe => groupe.Value)
+            //    .ToList();
 
-            listBooks.DataSource = null;
-            listBooks.DataSource = newList;
+            //listBooks.DataSource = null;
+            //listBooks.DataSource = newList;
+
+            var lines = groupedBooks.Select(g => $"{g.Key} ({g.Value.Count} шт.):\r\n" +
+                string.Join("\r\n", g.Value.Select(c => "   " + c.ToString())));
+            var text = string.Join("\r\n", lines);
+
+            new ResaultForm(text).ShowDialog();
         }
 
         private void listBooks_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -90,22 +97,22 @@ namespace Book.winform
 
         private void busketBut_Click(object sender, EventArgs e)
         {
-            busket busketForm = new busket(busket);
+            ResaultForm busketForm = new ResaultForm(sum, busket);
             busketForm.ShowDialog();
         }
 
-        private void addToBusketBut_Click(object sender, EventArgs e)
+        private void clearBusketBut_Click(object sender, EventArgs e)
         {
-
+            sum = 0;
+            busket.Clear();
         }
 
         private void listBooks_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             selected = e.RowIndex;
-            if (busket.books.Contains(logic.GetBooks()[selected]))
-            {
-                busket.books.Add(logic.GetBooks()[selected]);
-            }
+            sum += logic.GetBooks()[selected].Price;
+            busket.Add($"{logic.GetBooks()[selected].Title} - {logic.GetBooks()[selected].Author}." + 
+                $" Цена: {logic.GetBooks()[selected].Price}");
         }
     }
 }

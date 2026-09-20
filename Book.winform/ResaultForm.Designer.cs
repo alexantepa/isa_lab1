@@ -1,6 +1,6 @@
 ﻿namespace Book.winform
 {
-    partial class busket
+    partial class ResaultForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,19 +30,19 @@
         {
             close = new Button();
             busketItems = new RichTextBox();
-            totalPrice = new TextBox();
-            label1 = new Label();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             SuspendLayout();
             // 
             // close
             // 
             close.Font = new Font("Segoe UI", 14F);
-            close.Location = new Point(674, 362);
+            close.Location = new Point(674, 317);
             close.Name = "close";
             close.Size = new Size(114, 49);
             close.TabIndex = 0;
             close.Text = "Закрыть";
             close.UseVisualStyleBackColor = true;
+            close.Click += close_Click;
             // 
             // busketItems
             // 
@@ -54,32 +54,11 @@
             busketItems.TabIndex = 1;
             busketItems.Text = "";
             // 
-            // totalPrice
-            // 
-            totalPrice.Font = new Font("Segoe UI", 14F);
-            totalPrice.Location = new Point(608, 317);
-            totalPrice.Name = "totalPrice";
-            totalPrice.ReadOnly = true;
-            totalPrice.Size = new Size(180, 39);
-            totalPrice.TabIndex = 2;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 14F);
-            label1.Location = new Point(527, 320);
-            label1.Name = "label1";
-            label1.Size = new Size(80, 32);
-            label1.TabIndex = 3;
-            label1.Text = "Всего:";
-            // 
             // busket
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 428);
-            Controls.Add(label1);
-            Controls.Add(totalPrice);
+            ClientSize = new Size(800, 374);
             Controls.Add(busketItems);
             Controls.Add(close);
             FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -87,14 +66,12 @@
             Name = "busket";
             Text = "busket";
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
         private Button close;
         private RichTextBox busketItems;
-        private TextBox totalPrice;
-        private Label label1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
