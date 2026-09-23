@@ -101,6 +101,7 @@ namespace Book.winform
         {
             selected = e.RowIndex;
             logic.AddToBusket(logic.GetBooks()[selected].Id);
+            MessageBox.Show("Книга добавлена в корзину");
         }
 
         private void sortByPrise_Click(object sender, EventArgs e)

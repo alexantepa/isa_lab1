@@ -9,7 +9,7 @@ logic.CreatBook("Мастер и Маргарита", "Михаил Булгак
 
 
 PrintMenu();
-int choice = Convert.ToInt32(Console.ReadLine());
+int choice = int.Parse(Console.ReadLine());
 while (choice != 0)
 {
     switch (choice)
@@ -25,7 +25,7 @@ while (choice != 0)
             string price = Console.ReadLine();
             if (int.TryParse(price, out int num))
             {
-                logic.CreatBook(title, author, genre, Convert.ToInt32(price));
+                logic.CreatBook(title, author, genre, int.Parse(price));
                 Console.WriteLine("Книга добавлена!");
             }
             else
@@ -41,7 +41,7 @@ while (choice != 0)
             break;
         case 3:
             Console.Write("Введите ID книги для изменения: ");
-            int id = Convert.ToInt32(Console.ReadLine());
+            int id = int.Parse(Console.ReadLine());
             Console.Write("Введите новое название книги: ");
             string newTitle = Console.ReadLine();
             Console.Write("Введите нового автора книги: ");
@@ -51,7 +51,7 @@ while (choice != 0)
             Console.Write("Введите новую цену книги: ");
             string newPrice = Console.ReadLine();
             if (int.TryParse(newPrice, out int n))
-                logic.UpdateBook(id, newTitle, newAuthor, newGenre, Convert.ToInt32(newPrice));
+                logic.UpdateBook(id, newTitle, newAuthor, newGenre, int.Parse(newPrice));
             Console.WriteLine("Книга изменена!");
             break;
         case 4:
@@ -59,7 +59,7 @@ while (choice != 0)
             string delid = Console.ReadLine();
             if (int.TryParse(delid, out int nu))
             {
-                logic.DeleteBook(Convert.ToInt32(delid));
+                logic.DeleteBook(int.Parse(delid));
                 Console.WriteLine("Книга удалена!");
             }
             else
@@ -92,7 +92,7 @@ while (choice != 0)
             break;
     }
     PrintMenu();
-    choice = Convert.ToInt32(Console.ReadLine());
+    choice = int.Parse(Console.ReadLine());
 }
 static void PrintMenu()
 {
