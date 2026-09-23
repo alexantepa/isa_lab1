@@ -86,16 +86,41 @@ while (choice != 0)
                 Console.WriteLine(book);
             }
             break;
-
+        case 7:
+            logic.SortByPrice();
+            foreach (var b in logic.GetBooks())
+            {
+                Console.WriteLine(b);
+            }
+            break;
+        case 8:
+            Console.WriteLine("Введите ID книги, которую хотите добавить");
+            int idtoBus = int.Parse(Console.ReadLine());
+            logic.AddToBusket(idtoBus);
+            break; 
+        case 9:
+            logic.ClearBusket();
+            break;
+        case 10:
+            int sum = 0;
+            foreach(var item in logic.busket)
+            {
+                sum += item.Price;
+                Console.WriteLine($"{item.Title} - {item.Author}. Цена: {item.Price} рублей.\n");
+            }
+            Console.WriteLine($"Итог: {sum}");
+            break;
         default:
             Console.WriteLine("Неверный выбор. Попробуйте снова.");
             break;
     }
+    Console.ReadKey();
     PrintMenu();
     choice = int.Parse(Console.ReadLine());
 }
 static void PrintMenu()
 {
+    Console.Clear();
     Console.WriteLine("------Меню------");
     Console.WriteLine("1. Добавить книгу");
     Console.WriteLine("2. Показать все книги");
@@ -103,6 +128,11 @@ static void PrintMenu()
     Console.WriteLine("4. Удалить книгу");
     Console.WriteLine("5. Группировка по жанру");
     Console.WriteLine("6. Поиск по автору");
+    Console.WriteLine("7. Соротировка по цене");
+    Console.WriteLine("8. Добавить в корзину");
+    Console.WriteLine("9. Очистить корзину");
+    Console.WriteLine("10. Посмотреть корзину");
+
     Console.WriteLine("0. Выход");
     Console.Write("Ваш выбор: ");
 }
