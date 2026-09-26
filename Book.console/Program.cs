@@ -1,6 +1,10 @@
-﻿using Book.model;
+﻿using Book.businessLogic;
+using DataAccessLayer;
 
-Logic logic = new Logic();
+// IRepository<Book.model.Book> repository = new EntityRepository<Book.model.Book>(new AppDbContext());
+IRepository<Book.model.Book> repository = new DapperRepository<Book.model.Book>("Data Source=books_dapper.db");
+
+Logic logic = new Logic(repository);
 logic.CreatBook("Война и мир", "Лев Толстой", "Роман", 500);
 logic.CreatBook("Мизери", "Стивен Кинг", "Ужасы", 300);
 logic.CreatBook("Преступление и наказание", "Федор Достоевский", "Роман", 400);

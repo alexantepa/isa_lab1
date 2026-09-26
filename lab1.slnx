@@ -2,4 +2,6 @@
   <Project Path="Book.console/Book.console.csproj" Id="766510be-1954-41e9-9a92-020c110ee669" />
   <Project Path="Book.model/Book.model.csproj" />
   <Project Path="Book.winform/Book.winform.csproj" />
+  <Project Path="BusinessLogic/Book.BusinessLogic.csproj" Id="97c45fde-9386-4f47-9e58-289351cc68e8" />
+  <Project Path="DataAccessLayer/DataAccessLayer.csproj" Id="c22d6e5c-2fd6-42fc-a864-666e1a66caca" />
 </Solution>

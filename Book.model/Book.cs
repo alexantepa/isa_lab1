@@ -1,6 +1,6 @@
 ﻿namespace Book.model
 {
-    public class Book
+    public class Book: IDomainObject
     {
         public int Id { get; set; }
         public string Title { get; set; }
