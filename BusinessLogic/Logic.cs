@@ -9,12 +9,22 @@ namespace Book.businessLogic
     /// Класс бизнес-логики.
     /// </summary>
 
-    public class Logic
+    public class Logic: IDisposable
     {
         private readonly IRepository<Book.model.Book> repository;
+        private readonly AppDbContext? ownedContext;
 
-        public Logic() : this(new EntityRepository<Book.model.Book>(new AppDbContext())) { }
+        public Logic()
+        {
+            ownedContext = new AppDbContext();
+            repository = new EntityRepository<Book.model.Book>(ownedContext);
+        }
         public Logic(IRepository<Book.model.Book> repository) { this.repository = repository; }
+
+        public void Dispose()
+        {
+            ownedContext?.Dispose();
+        }
 
 
         public List<Book.model.Book> busket = new List<Book.model.Book>();

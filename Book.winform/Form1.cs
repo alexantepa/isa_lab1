@@ -109,5 +109,11 @@ namespace Book.winform
             logic.SortByPrice();
             ReloadGrid();
         }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            logic.Dispose();
+            base.OnFormClosed(e);
+        }
     }
 }
