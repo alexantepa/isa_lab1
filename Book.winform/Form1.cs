@@ -1,27 +1,38 @@
 using Book.businessLogic;
+using DataAccessLayer;
+using Microsoft.EntityFrameworkCore;
 
 namespace Book.winform
 {
     public partial class Form1 : Form
     {
-        public Logic logic = new Logic();
+        public Logic logic;
+
+        private AppDbContext? context;
         private int sum = 0;
         public int selected;
 
         public Form1()
         {
             InitializeComponent();
+
+            context = new AppDbContext();
+            IRepository<Book.model.Book> repository = new EntityRepository<Book.model.Book>(context);
+            //IRepository<Book.model.Book> repository = new DapperRepository<Book.model.Book>("Data Source=books.db");
+
+            logic = new Logic(repository);
+
             //FillData();
             ReloadGrid();
         }
 
         private void FillData()
         {
-            //logic.CreatBook("Война и мир", "Лев Толстой", "Роман", 500);
-            //logic.CreatBook("Мизери", "Стивен Кинг", "Ужасы", 300);
-            //logic.CreatBook("Преступление и наказание", "Федор Достоевский", "Роман", 400);
-            //logic.CreatBook("Оно", "Стивен Кинг", "Ужасы", 800);
-            //logic.CreatBook("Мастер и Маргарита", "Михаил Булгаков", "Роман", 600);
+            logic.CreatBook("Война и мир", "Лев Толстой", "Роман", 500);
+            logic.CreatBook("Мизери", "Стивен Кинг", "Ужасы", 300);
+            logic.CreatBook("Преступление и наказание", "Федор Достоевский", "Роман", 400);
+            logic.CreatBook("Оно", "Стивен Кинг", "Ужасы", 800);
+            logic.CreatBook("Мастер и Маргарита", "Михаил Булгаков", "Роман", 600);
         }
 
         private void ReloadGrid()
@@ -113,6 +124,7 @@ namespace Book.winform
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
             logic.Dispose();
+            context?.Dispose();
             base.OnFormClosed(e);
         }
     }

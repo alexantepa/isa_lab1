@@ -2,8 +2,8 @@
 using DataAccessLayer;
 
 using var context = new AppDbContext();
- IRepository<Book.model.Book> repository = new EntityRepository<Book.model.Book>(context);
-//IRepository<Book.model.Book> repository = new DapperRepository<Book.model.Book>("Data Source=books_dapper.db");
+IRepository<Book.model.Book> repository = new EntityRepository<Book.model.Book>(context);
+//IRepository<Book.model.Book> repository = new DapperRepository<Book.model.Book>("Data Source=books.db");
 
 Logic logic = new Logic(repository);
 //logic.CreatBook("Война и мир", "Лев Толстой", "Роман", 500);
