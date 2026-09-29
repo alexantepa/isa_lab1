@@ -18,7 +18,7 @@ namespace DataAccessLayer
         public DapperRepository(string connectionString, string? tableName = null)
         {
             _connectionString = connectionString;
-            _tableName = tableName ?? typeof(T).Name + "s"; // Book -> Books
+            _tableName = tableName ?? typeof(T).Name + "s";
 
             _columnsWithoutId = typeof(T)
                 .GetProperties()

@@ -22,17 +22,7 @@ namespace Book.winform
 
             logic = new Logic(repository);
 
-            //FillData();
             ReloadGrid();
-        }
-
-        private void FillData()
-        {
-            logic.CreatBook("Война и мир", "Лев Толстой", "Роман", 500);
-            logic.CreatBook("Мизери", "Стивен Кинг", "Ужасы", 300);
-            logic.CreatBook("Преступление и наказание", "Федор Достоевский", "Роман", 400);
-            logic.CreatBook("Оно", "Стивен Кинг", "Ужасы", 800);
-            logic.CreatBook("Мастер и Маргарита", "Михаил Булгаков", "Роман", 600);
         }
 
         private void ReloadGrid()
