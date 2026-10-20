@@ -1,11 +1,11 @@
 ﻿using Book.businessLogic;
+using Book.BusinessLogic;
 using DataAccessLayer;
+using Ninject;
 
-using var context = new AppDbContext();
-IRepository<Book.model.Book> repository = new EntityRepository<Book.model.Book>(context);
-//IRepository<Book.model.Book> repository = new DapperRepository<Book.model.Book>();
+using var ninjectKernel = new StandardKernel(new SimpleConfigModule());
 
-Logic logic = new Logic(repository);
+Logic logic = ninjectKernel.Get<Logic>();
 
 PrintMenu();
 int choice = int.Parse(Console.ReadLine());

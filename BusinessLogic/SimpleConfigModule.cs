@@ -1,4 +1,5 @@
-﻿using DataAccessLayer;
+﻿using Book.businessLogic;
+using DataAccessLayer;
 using Ninject.Modules;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,12 @@ namespace Book.BusinessLogic
             Bind<IRepository<Book.model.Book>>()
                 .To<EntityRepository<Book.model.Book>>()
                 .InSingletonScope();
+
+            Bind<AppDbContext>()
+                .ToMethod(_ => new AppDbContext())
+                .InSingletonScope();
+
+            Bind<Logic>().ToSelf();
         }
     }
 }

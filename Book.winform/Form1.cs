@@ -10,7 +10,6 @@ namespace Book.winform
     {
         public Logic logic;
 
-        private AppDbContext? context;
         private int sum = 0;
         public int selected;
 
@@ -113,7 +112,6 @@ namespace Book.winform
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
             logic.Dispose();
-            context?.Dispose();
             base.OnFormClosed(e);
         }
     }
