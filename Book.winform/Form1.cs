@@ -1,6 +1,8 @@
 using Book.businessLogic;
+using Book.BusinessLogic;
 using DataAccessLayer;
 using Microsoft.EntityFrameworkCore;
+using Ninject;
 
 namespace Book.winform
 {
@@ -16,11 +18,8 @@ namespace Book.winform
         {
             InitializeComponent();
 
-            context = new AppDbContext();
-            IRepository<Book.model.Book> repository = new EntityRepository<Book.model.Book>(context);
-            //IRepository<Book.model.Book> repository = new DapperRepository<Book.model.Book>("Data Source=books.db");
-
-            logic = new Logic(repository);
+            IKernel ninjectKernel = new StandardKernel(new SimpleConfigModule());
+            logic = ninjectKernel.Get<Logic>();
 
             ReloadGrid();
         }

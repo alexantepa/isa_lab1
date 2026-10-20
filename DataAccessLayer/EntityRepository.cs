@@ -15,13 +15,13 @@ namespace DataAccessLayer
             _context = context;
             _dbSet = _context.Set<T>();
         }
-
+        
         public void Add(T item) { _dbSet.Add(item); _context.SaveChanges(); }
 
         public void Delete(int id)
         {
-            var entity = _dbSet.Find(id);
-            if (entity != null) { _dbSet.Remove(entity); _context.SaveChanges(); }
+            var item = _dbSet.Find(id);
+            if (item != null) { _dbSet.Remove(item); _context.SaveChanges(); }
         }
 
         public List<T> GetAll() => _dbSet.AsNoTracking().ToList();

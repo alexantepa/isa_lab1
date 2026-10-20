@@ -15,9 +15,10 @@ namespace DataAccessLayer
         private readonly string _tableName;
         private readonly PropertyInfo[] _columnsWithoutId;
 
-        public DapperRepository(string connectionString, string? tableName = null)
+
+        public DapperRepository(string? tableName = null)
         {
-            _connectionString = connectionString;
+            _connectionString = "Data Source=books.db";
             _tableName = tableName ?? typeof(T).Name + "s";
 
             _columnsWithoutId = typeof(T)

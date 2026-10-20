@@ -14,11 +14,6 @@ namespace Book.businessLogic
         private readonly IRepository<Book.model.Book> repository;
         private readonly AppDbContext? ownedContext;
 
-        public Logic()
-        {
-            ownedContext = new AppDbContext();
-            repository = new EntityRepository<Book.model.Book>(ownedContext);
-        }
         public Logic(IRepository<Book.model.Book> repository) { this.repository = repository; }
 
         public void Dispose()
