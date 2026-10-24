@@ -7,8 +7,8 @@ namespace Book.BusinessLogic
 {
     public class Busket: IBusket
     {
-        public List<Book.model.Book> busket;
-        public int sum = 0;
+        private List<Book.model.Book> busket;
+        private int sum = 0;
 
         public Busket() {
             busket = new List<Book.model.Book>();
@@ -27,5 +27,17 @@ namespace Book.BusinessLogic
             busket.Clear();
             sum = 0;
         }
+
+        public List<Book.model.Book> GetBusket()
+        {
+            List<Book.model.Book> b = new List<Book.model.Book>();
+            foreach (var item in busket)
+            {
+                b.Add(item);
+            }
+            return b;
+        }
+
+        public int GetSum() => sum;
     }
 }

@@ -55,8 +55,10 @@ while (choice != 0)
                 Console.Write("Введите новую цену книги: ");
                 string newPrice = Console.ReadLine();
                 if (int.TryParse(newPrice, out int n))
+                {
                     logic.UpdateBook(id, newTitle, newAuthor, newGenre, int.Parse(newPrice));
-                Console.WriteLine("Книга изменена!");
+                    Console.WriteLine("Книга изменена!");
+                }
             }
             else Console.WriteLine("Такой книги нет");
             break;
@@ -114,7 +116,7 @@ while (choice != 0)
             break;
         case 10:
             int sum = 0;
-            foreach(var item in busket.busket)
+            foreach(var item in busket.GetBusket())
             {
                 sum += item.Price;
                 Console.WriteLine($"{item.Title} - {item.Author}. Цена: {item.Price} рублей.\n");

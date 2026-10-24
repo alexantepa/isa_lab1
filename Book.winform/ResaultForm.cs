@@ -21,12 +21,12 @@ namespace Book.winform
         public ResaultForm(Busket l)
         {
             InitializeComponent();
-            var lines = l.busket;
+            var lines = l.GetBusket();
             foreach (var item in lines)
             {
                 busketItems.Text += $"{item.Title} - {item.Author}. Цена: {item.Price} рублей.\n";
             }
-            busketItems.Text += $"Итог: {l.sum} рублей";
+            busketItems.Text += $"Итог: {l.GetSum()} рублей";
         }
 
         /// <summary>
