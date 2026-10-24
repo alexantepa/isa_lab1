@@ -28,7 +28,7 @@ namespace Book.BusinessLogic
             sum = 0;
         }
 
-        public List<Book.model.Book> GetBusket()
+        public IReadOnlyList<Book.model.Book> GetBusket()
         {
             List<Book.model.Book> b = new List<Book.model.Book>();
             foreach (var item in busket)

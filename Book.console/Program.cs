@@ -115,13 +115,11 @@ while (choice != 0)
             Console.WriteLine("Корзина отчищена");
             break;
         case 10:
-            int sum = 0;
             foreach(var item in busket.GetBusket())
             {
-                sum += item.Price;
                 Console.WriteLine($"{item.Title} - {item.Author}. Цена: {item.Price} рублей.\n");
             }
-            Console.WriteLine($"Итог: {sum}");
+            Console.WriteLine($"Итог: {busket.GetSum()}");
             break;
         default:
             Console.WriteLine("Неверный выбор. Попробуйте снова.");

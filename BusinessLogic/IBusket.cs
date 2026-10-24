@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
 using System.Text;
 
 namespace Book.BusinessLogic
@@ -22,7 +21,7 @@ namespace Book.BusinessLogic
         /// Получение всех элементов из корзины
         /// </summary>
         /// <returns>Список книг, находящихся в корзине</returns>
-        public List<Book.model.Book> GetBusket();
+        public IReadOnlyList<Book.model.Book> GetBusket();
 
         /// <summary>
         /// Получение суммы всех товаров, находящихся в корзине
