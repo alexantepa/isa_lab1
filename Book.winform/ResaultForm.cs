@@ -7,28 +7,26 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Book.businessLogic;
+using Book.BusinessLogic;
 
 namespace Book.winform
 {
     public partial class ResaultForm : Form
     {
-        int sum = 0;
-
         /// <summary>
         /// Создание формы для отображения итоговой суммы и списка товаров в корзине
         /// </summary>
         /// <param name="sum">Сумма в корзине</param>
         /// <param name="items">Список книг в корзине</param>
-        public ResaultForm(Logic l)
+        public ResaultForm(Busket l)
         {
             InitializeComponent();
             var lines = l.busket;
             foreach (var item in lines)
             {
-                sum += item.Price;
                 busketItems.Text += $"{item.Title} - {item.Author}. Цена: {item.Price} рублей.\n";
             }
-            busketItems.Text += $"Итог: {sum} рублей";
+            busketItems.Text += $"Итог: {l.sum} рублей";
         }
 
         /// <summary>

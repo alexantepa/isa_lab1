@@ -2,10 +2,13 @@
 using Book.BusinessLogic;
 using DataAccessLayer;
 using Ninject;
+using Ninject.Selection;
 
 using var ninjectKernel = new StandardKernel(new SimpleConfigModule());
 
 Logic logic = ninjectKernel.Get<Logic>();
+BusinessFunctionLogic busFunLogic = ninjectKernel.Get<BusinessFunctionLogic>();
+Busket busket = ninjectKernel.Get<Busket>();
 
 PrintMenu();
 int choice = int.Parse(Console.ReadLine());
@@ -41,17 +44,21 @@ while (choice != 0)
         case 3:
             Console.Write("Введите ID книги для изменения: ");
             int id = int.Parse(Console.ReadLine());
-            Console.Write("Введите новое название книги: ");
-            string newTitle = Console.ReadLine();
-            Console.Write("Введите нового автора книги: ");
-            string newAuthor = Console.ReadLine();
-            Console.Write("Введите новый жанр книги: ");
-            string newGenre = Console.ReadLine();
-            Console.Write("Введите новую цену книги: ");
-            string newPrice = Console.ReadLine();
-            if (int.TryParse(newPrice, out int n))
-                logic.UpdateBook(id, newTitle, newAuthor, newGenre, int.Parse(newPrice));
-            Console.WriteLine("Книга изменена!");
+            if (logic.GetBooks()[id] != null)
+            {
+                Console.Write("Введите новое название книги: ");
+                string newTitle = Console.ReadLine();
+                Console.Write("Введите нового автора книги: ");
+                string newAuthor = Console.ReadLine();
+                Console.Write("Введите новый жанр книги: ");
+                string newGenre = Console.ReadLine();
+                Console.Write("Введите новую цену книги: ");
+                string newPrice = Console.ReadLine();
+                if (int.TryParse(newPrice, out int n))
+                    logic.UpdateBook(id, newTitle, newAuthor, newGenre, int.Parse(newPrice));
+                Console.WriteLine("Книга изменена!");
+            }
+            else Console.WriteLine("Такой книги нет");
             break;
         case 4:
             Console.Write("Введите ID книги для удаления: ");
@@ -67,7 +74,7 @@ while (choice != 0)
             }
             break;
         case 5:
-            var groupedBooks = logic.GroupByGenre();
+            var groupedBooks = busFunLogic.GroupByGenre();
             foreach (var group in groupedBooks)
             {
                 Console.WriteLine($"Жанр: {group.Key}");
@@ -80,14 +87,14 @@ while (choice != 0)
         case 6:
             Console.Write("Введите автора: ");
             string searchAu = Console.ReadLine();
-            foreach (var book in logic.FindByAuthor(searchAu))
+            foreach (var book in busFunLogic.FindByAuthor(searchAu))
             {
                 Console.WriteLine(book);
             }
             break;
         case 7:
-            logic.SortByPrice();
-            foreach (var b in logic.GetBooks())
+            busFunLogic.SortByPrice();
+            foreach (var b in busFunLogic.GetSortedBooks())
             {
                 Console.WriteLine(b);
             }
@@ -95,14 +102,19 @@ while (choice != 0)
         case 8:
             Console.WriteLine("Введите ID книги, которую хотите добавить");
             int idtoBus = int.Parse(Console.ReadLine());
-            logic.AddToBusket(idtoBus);
+            if (logic.GetBooks()[idtoBus] != null)
+            {
+                busket.Add(logic.GetBooks()[idtoBus]);
+                Console.WriteLine("Книга успешно добавлена");
+            }
             break; 
         case 9:
-            logic.ClearBusket();
+            busket.Clear();
+            Console.WriteLine("Корзина отчищена");
             break;
         case 10:
             int sum = 0;
-            foreach(var item in logic.busket)
+            foreach(var item in busket.busket)
             {
                 sum += item.Price;
                 Console.WriteLine($"{item.Title} - {item.Author}. Цена: {item.Price} рублей.\n");
