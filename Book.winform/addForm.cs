@@ -5,20 +5,20 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using Book.businessLogic;
+using Book.BusinessLogic;
 
 namespace Book.winform
 {
     public partial class addForm : Form
     {
-        public Logic logic;
+        private readonly ILogic logic;
         int id;
         /// <summary>
         /// Создание формы для редактирования книги
         /// </summary>
         /// <param name="logic">Экземпляр логики</param>
         /// <param name="id">ID книги для редактирования</param>
-        public addForm(Logic logic, int id)
+        public addForm(ILogic logic, int id)
         {
             InitializeComponent();
             this.logic = logic;
@@ -39,7 +39,7 @@ namespace Book.winform
         /// Создание формы для добавления новой книги
         /// </summary>
         /// <param name="logic">Экземпляр логики</param>
-        public addForm(Logic logic)
+        public addForm(ILogic logic)
         {
             this.logic = logic;
             InitializeComponent();

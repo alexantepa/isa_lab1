@@ -6,9 +6,9 @@ using Ninject.Selection;
 
 using var ninjectKernel = new StandardKernel(new SimpleConfigModule());
 
-Logic logic = ninjectKernel.Get<Logic>();
-BusinessFunctionLogic busFunLogic = ninjectKernel.Get<BusinessFunctionLogic>();
-Busket busket = ninjectKernel.Get<Busket>();
+ILogic logic = ninjectKernel.Get<ILogic>();
+IBusinessFunctionLogic busFunLogic = ninjectKernel.Get<IBusinessFunctionLogic>();
+IBusket busket = ninjectKernel.Get<IBusket>();
 
 PrintMenu();
 int choice = int.Parse(Console.ReadLine());

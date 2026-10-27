@@ -6,9 +6,9 @@ namespace Book.winform
 {
     public partial class Form1 : Form
     {
-        public Logic logic;
-        private readonly BusinessFunctionLogic busFunLogic;
-        public Busket busket;
+        public ILogic logic;
+        private readonly IBusinessFunctionLogic busFunLogic;
+        public IBusket busket;
         public int selected;
 
         public Form1()
@@ -16,9 +16,9 @@ namespace Book.winform
             InitializeComponent();
 
             IKernel ninjectKernel = new StandardKernel(new SimpleConfigModule());
-            logic = ninjectKernel.Get<Logic>();
-            busFunLogic = ninjectKernel.Get<BusinessFunctionLogic>();
-            busket = ninjectKernel.Get<Busket>();
+            logic = ninjectKernel.Get<ILogic>();
+            busFunLogic = ninjectKernel.Get<IBusinessFunctionLogic>();
+            busket = ninjectKernel.Get<IBusket>();
 
             ReloadGrid();
         }

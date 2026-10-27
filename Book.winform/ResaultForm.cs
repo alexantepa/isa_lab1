@@ -18,7 +18,7 @@ namespace Book.winform
         /// </summary>
         /// <param name="sum">Сумма в корзине</param>
         /// <param name="items">Список книг в корзине</param>
-        public ResaultForm(Busket l)
+        public ResaultForm(IBusket l)
         {
             InitializeComponent();
             var lines = l.GetBusket();
