@@ -1,4 +1,3 @@
-using Book.businessLogic;
 using Book.BusinessLogic;
 using Ninject;
 
@@ -22,7 +21,7 @@ namespace Book.winform
         private void ReloadGrid()
         {
             listBooks.DataSource = null;
-            listBooks.DataSource = logic;
+            listBooks.DataSource = logic.GetBooks();
         }
 
         private void closeBut_Click(object sender, EventArgs e)

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Book.BusinessLogic
 {
-    public interface ILogic
+    public interface ILogic: IBusket, IBusinessFunctionLogic
     {
         /// <summary>
         /// Создает книгу и добавляет ее в список

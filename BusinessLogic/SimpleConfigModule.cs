@@ -21,9 +21,6 @@ namespace Book.BusinessLogic
 
             Bind<ILogic>().To<Logic>().InSingletonScope();
 
-            Bind<IBusinessFunctionLogic>().To<BusinessFunctionLogic>().InSingletonScope();
-
-            Bind<IBusket>().To<Busket>().InSingletonScope();
         }
     }
 }

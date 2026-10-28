@@ -7,13 +7,13 @@ namespace Book.BusinessLogic
 {
     public class BusinessFunctionLogic: IBusinessFunctionLogic
     {
-        private readonly Logic logic;
+        private readonly ILogic logic;
         private bool? sortDescending;
 
 
-        public BusinessFunctionLogic(Logic logic)
+        public BusinessFunctionLogic(Logic l)
         {
-            this.logic = logic;
+            this.logic = l;
         }
 
         public List<Book.model.Book> GetSortedBooks()

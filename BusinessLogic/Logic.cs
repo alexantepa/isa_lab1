@@ -11,18 +11,17 @@ namespace Book.businessLogic
     /// Класс бизнес-логики.
     /// </summary>
 
-    public class Logic: ILogic, IBusinessFunctionLogic, IBusket
+    public class Logic: ILogic
     {
         private readonly IRepository<Book.model.Book> repository;
-        public IBusinessFunctionLogic busFunLogic;
-        public IBusket busket;
+        private BusinessFunctionLogic busFunLogic;
+        private IBusket busket;
 
 
         public Logic(IRepository<Book.model.Book> repository) 
         {
-            IKernel ninjectKernel = new StandardKernel(new SimpleConfigModule());
-            busFunLogic = ninjectKernel.Get<IBusinessFunctionLogic>();
-            busket = ninjectKernel.Get<IBusket>();
+            busFunLogic = new BusinessFunctionLogic(this);
+            busket = new Busket();
             this.repository = repository; 
         }
 
