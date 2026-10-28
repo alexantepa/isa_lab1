@@ -1,5 +1,6 @@
 ﻿using Book.BusinessLogic;
 using DataAccessLayer;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,11 +11,20 @@ namespace Book.businessLogic
     /// Класс бизнес-логики.
     /// </summary>
 
-    public class Logic: ILogic
+    public class Logic: ILogic, IBusinessFunctionLogic, IBusket
     {
         private readonly IRepository<Book.model.Book> repository;
+        public IBusinessFunctionLogic busFunLogic;
+        public IBusket busket;
 
-        public Logic(IRepository<Book.model.Book> repository) { this.repository = repository; }
+
+        public Logic(IRepository<Book.model.Book> repository) 
+        {
+            IKernel ninjectKernel = new StandardKernel(new SimpleConfigModule());
+            busFunLogic = ninjectKernel.Get<IBusinessFunctionLogic>();
+            busket = ninjectKernel.Get<IBusket>();
+            this.repository = repository; 
+        }
 
         public void CreatBook(string title, string author, string genre, int price)
         {
@@ -42,6 +52,46 @@ namespace Book.businessLogic
         public List<Book.model.Book> GetBooks()
         {
             return repository.GetAll();
+        }
+
+        public List<model.Book> GetSortedBooks()
+        {
+            return busFunLogic.GetSortedBooks();
+        }
+
+        public Dictionary<string, List<model.Book>> GroupByGenre()
+        {
+            return busFunLogic.GroupByGenre();
+        }
+
+        public List<model.Book> FindByAuthor(string author)
+        {
+            return busFunLogic.FindByAuthor(author);
+        }
+
+        public void SortByPrice()
+        {
+            busFunLogic.SortByPrice();
+        }
+
+        public void Add(model.Book book)
+        {
+            busket.Add(book);
+        }
+
+        public void Clear()
+        {
+            busket.Clear();
+        }
+
+        public IReadOnlyList<model.Book> GetBusket()
+        {
+            return busket.GetBusket();
+        }
+
+        public int GetSum()
+        {
+            return busket.GetSum();
         }
     }
 }

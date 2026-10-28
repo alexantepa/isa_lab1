@@ -7,8 +7,6 @@ namespace Book.winform
     public partial class Form1 : Form
     {
         public ILogic logic;
-        private readonly IBusinessFunctionLogic busFunLogic;
-        public IBusket busket;
         public int selected;
 
         public Form1()
@@ -17,8 +15,6 @@ namespace Book.winform
 
             IKernel ninjectKernel = new StandardKernel(new SimpleConfigModule());
             logic = ninjectKernel.Get<ILogic>();
-            busFunLogic = ninjectKernel.Get<IBusinessFunctionLogic>();
-            busket = ninjectKernel.Get<IBusket>();
 
             ReloadGrid();
         }
@@ -26,7 +22,7 @@ namespace Book.winform
         private void ReloadGrid()
         {
             listBooks.DataSource = null;
-            listBooks.DataSource = busFunLogic.GetSortedBooks();
+            listBooks.DataSource = logic;
         }
 
         private void closeBut_Click(object sender, EventArgs e)
@@ -36,7 +32,7 @@ namespace Book.winform
 
         private void groupeBut_Click(object sender, EventArgs e)
         {
-            var groupedBooks = busFunLogic.GroupByGenre();
+            var groupedBooks = logic.GroupByGenre();
 
             var lines = groupedBooks.Select(g => $"{g.Key} ({g.Value.Count} шт.):\r\n" +
                 string.Join("\r\n", g.Value.Select(c => "   " + c.ToString())));
@@ -79,7 +75,7 @@ namespace Book.winform
             }
             else
             {
-                var authorBooks = busFunLogic.FindByAuthor(result);
+                var authorBooks = logic.FindByAuthor(result);
                 listBooks.DataSource = null;
                 listBooks.DataSource = authorBooks.ToList();
             }
@@ -87,25 +83,25 @@ namespace Book.winform
 
         private void busketBut_Click(object sender, EventArgs e)
         {
-            ResaultForm busketForm = new ResaultForm(busket);
+            ResaultForm busketForm = new ResaultForm(logic);
             busketForm.ShowDialog();
         }
 
         private void clearBusketBut_Click(object sender, EventArgs e)
         {
-            busket.Clear();
+            logic.Clear();
         }
 
         private void listBooks_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             selected = e.RowIndex;
-            busket.Add(logic.GetBooks()[selected]);
+            logic.Add(logic.GetBooks()[selected]);
             MessageBox.Show("Книга добавлена в корзину");
         }
 
         private void sortByPrise_Click(object sender, EventArgs e)
         {
-            busFunLogic.SortByPrice();
+            logic.SortByPrice();
             ReloadGrid();
         }
 

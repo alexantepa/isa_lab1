@@ -37,5 +37,23 @@ namespace Book.BusinessLogic
         /// </summary>
         /// <returns>Список книг</returns>
         public List<Book.model.Book> GetBooks();
+
+        public List<model.Book> GetSortedBooks();
+
+        public Dictionary<string, List<Book.model.Book>> GroupByGenre();
+
+        public List<model.Book> FindByAuthor(string author);
+
+        public void SortByPrice();
+
+        public void Add(Book.model.Book book);
+
+        public void Clear();
+
+        public IReadOnlyList<Book.model.Book> GetBusket();
+
+        public int GetSum();
+
+
     }
 }
