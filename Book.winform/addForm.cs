@@ -34,7 +34,7 @@ namespace Book.winform
 
             save.Click += saveUpdate_Click;
         }
-
+        //
         /// <summary>
         /// Создание формы для добавления новой книги
         /// </summary>
